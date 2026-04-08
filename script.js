@@ -1,13 +1,10 @@
 "use strict";
 
-// TODO: Make it 0 based score with number of tries depending on level - easy, medium and hard.
-
-// You have a basic score, then you guess a number between 0-20. Everytime you have correct guess score adds, otherwise deducts. When the score hits zero game is over. High score must be showed.
-
 const generateRandomNumber = () => Math.trunc(Math.random() * 20);
 
-let basicScore = 20;
-let gameOver = basicScore === 0;
+let basicScore = 0;
+let numberOfLives = 0;
+let gameOver = numberOfLives === 0;
 let userQuit = false;
 let rightGuess = false;
 let rightInput = false;
@@ -32,6 +29,26 @@ const checkIfValidInput = userInput => {
     }
 };
 const checkIfHighScore = userScore => userScore > highScore;
+const setLivesBasedOnDifficulty = difficulty => {
+    switch (difficulty) {
+        case 'easy':
+            numberOfLives = 10;
+            break;
+        case 'medium':
+            numberOfLives = 5;
+            break;
+        case 'hard':
+            numberOfLives = 3;
+            break;
+        default:
+            console.log("Invalid difficulty level! Setting to easy by default.");
+            numberOfLives = 10;
+    }
+}
+
+let difficulty = prompt("Select difficulty level: easy, medium, hard");
+
+setLivesBasedOnDifficulty(difficulty);
 
 while (!gameOver && !userQuit) {
     while (!rightInput || !userInput) {
@@ -55,7 +72,7 @@ while (!gameOver && !userQuit) {
     userInput = Number(userInput)
 
     console.log(`Number to guess! ${randomNumber}`)
-    
+
     rightGuess = randomNumber === userInput;
     const highGuess = userInput > randomNumber;
     const lowGuess = userInput < randomNumber;
@@ -65,10 +82,10 @@ while (!gameOver && !userQuit) {
         console.log("Congratulations you got the right number!");
         randomNumber = generateRandomNumber();
     } else if (highGuess) {
-        basicScore--;
+        numberOfLives--;
         console.log("Try lower!");
     } else if (lowGuess) {
-        basicScore--;
+        numberOfLives--;
         console.log("Try higher!");
     }
 

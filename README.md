@@ -5,17 +5,26 @@ A console-based number guessing game built with JavaScript.
 ## How to Play
 
 1. Run the script in a JavaScript environment that supports `prompt()` (e.g., a browser console).
-2. You start with a score of **20**.
-3. Guess a number between **0 and 20**.
-   - **Correct guess** → score increases by 1, a new number is generated.
-   - **Wrong guess** → score decreases by 1 and you receive a hint (`Try higher!` or `Try lower!`).
+2. Select a **difficulty level**: `easy`, `medium`, or `hard`.
+3. Guess a number between **0 and 19**.
+   - **Correct guess** → score increases by 1 and a new number is generated.
+   - **Wrong guess** → you lose a life and receive a hint (`Try higher!` or `Try lower!`).
 4. Type **`q`** at any time to quit.
-5. The game ends when your score reaches **0** or you quit.
+5. The game ends when you run out of lives or you quit.
 6. Your **high score** is tracked across rounds.
+
+## Difficulty Levels
+
+| Level  | Lives |
+|--------|-------|
+| Easy   | 10    |
+| Medium | 5     |
+| Hard   | 3     |
 
 ## Features
 
+- Difficulty selection (easy, medium, hard)
 - Random number generation between 0–20
-- Score-based gameplay with win/loss feedback
+- Separate score and lives tracking
 - High score tracking
 - Graceful quit option

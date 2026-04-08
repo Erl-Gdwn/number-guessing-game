@@ -1,6 +1,6 @@
 "use strict";
 
-const generateRandomNumber = () => Math.trunc(Math.random() * 20);
+const generateRandomNumber = () => Math.trunc((Math.random() * 20) + 1);
 
 let basicScore = 0;
 let numberOfLives = 0;
